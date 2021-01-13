@@ -12,5 +12,6 @@ RSpec.describe Message, type: :model do
 
   context '#associations' do
     it { is_expected.to belong_to(:sender) }
+    it { is_expected.to belong_to(:channel) }
   end
 end

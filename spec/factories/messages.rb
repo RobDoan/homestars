@@ -5,5 +5,6 @@ FactoryBot.define do
     content { "Incoming Message" }
     status { "sent" }
     sender { create(:user) }
+    channel { create(:channel) }
   end
 end
