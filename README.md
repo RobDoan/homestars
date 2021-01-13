@@ -1,5 +1,16 @@
-# Home Stars Code Challange
+# Home Stars Code challenger
 
+
+# What I can improve if I have more time
+
+- **DRY**:
+    - `check_authorization` method
+    
+- Data Consistency. When we delete a user, we only soft delete that user.
+Otherwise, the system can not find created user, and his messages.
+If we set `dependencies: destroy` for channels, it may cause problem: other users will lost chat history.
+    
+- Move `PunditUser` to a class rather than user Struct inside Controller, it's hard and seems not correct to put there
 
 # TODO
 

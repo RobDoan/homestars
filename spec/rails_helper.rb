@@ -16,12 +16,20 @@ require File.expand_path("../../config/environment", __FILE__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 
 require "rspec/rails"
+require 'pundit/rspec'
+require 'database_cleaner/active_record'
 
 module TestSetup
   extend self
 
   def setup
     disable_net_connect!
+    database_cleaner
+  end
+
+  def database_cleaner
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
   end
 
   def allow_net_connect!
@@ -65,7 +73,15 @@ RSpec.configure do |config|
     TestSetup.setup
   end
 
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
   config.after :each do |x|
     ActionMailer::Base.deliveries.clear
+  end
+
+  config.append_after(:each) do
+    DatabaseCleaner.clean
   end
 end

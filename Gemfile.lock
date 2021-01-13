@@ -85,6 +85,10 @@ GEM
     crack (0.4.5)
       rexml
     crass (1.0.6)
+    database_cleaner (1.8.5)
+    database_cleaner-active_record (1.8.0)
+      activerecord
+      database_cleaner (~> 1.8.0)
     debase (0.2.4.1)
       debase-ruby_core_source (>= 0.10.2)
     debase-ruby_core_source (0.10.12)
@@ -338,6 +342,7 @@ DEPENDENCIES
   awesome_print
   bootsnap (>= 1.4.4)
   bullet
+  database_cleaner-active_record
   debase
   devise
   devise-jwt (~> 0.8.0)

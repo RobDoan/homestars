@@ -5,4 +5,11 @@ Rails.application.routes.draw do
              class_name: 'User',
              module: 'v1',
              format: :json
+
+  namespace :v1, defaults: { format: :json } do
+    resources :channels, only: [:create, :update, :index, :show] do
+      resources :messages
+    end
+  end
+
 end

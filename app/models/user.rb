@@ -6,6 +6,8 @@ class User < ApplicationRecord
          :jwt_authenticatable, jwt_revocation_strategy: Devise::JWT::RevocationStrategies::Null
 
   has_many :messages, inverse_of: :sender, foreign_key: :sender_id
+  has_many :channels, foreign_key: :creator_id
+  
 
   attr_reader :access_token
   enum availability: { online: 0, offline: 1 }
