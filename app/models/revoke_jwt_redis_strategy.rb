@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # TODO: implement revoke jwt token using redis
 class RevokeJwtRedisStrategy
   include Singleton
@@ -8,10 +10,9 @@ class RevokeJwtRedisStrategy
   end
 
   def jwt_revoked?(payload, user)
-    return false
+    false
   end
 
   def revoke_jwt(payload, user)
   end
-
 end

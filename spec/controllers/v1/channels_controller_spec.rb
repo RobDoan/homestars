@@ -1,12 +1,11 @@
 # frozen_string_literal: true
 
 RSpec.describe "Channels", type: :request do
+  let!(:user) { create(:user, password: "test1234") }
+  before do
+    sign_in(user)
+  end
   describe "/v1/channels" do
-    let!(:user) { create(:user, password: "test1234") }
-    before do
-      sign_in(user)
-    end
-
     context "Creating channel" do
       it "create new channel" do
         channel_params = { name: "Example Channel" }
@@ -23,8 +22,10 @@ RSpec.describe "Channels", type: :request do
         expect(json_response["errors"]).not_to be_empty
       end
     end
+  end
 
-    context "update channel" do
+  describe "/v1/channels/:id/update" do
+    context "only creator can update the channel" do
       let(:channel) { create(:channel) }
       it "only creator can update the channel" do
         put v1_channel_url(channel), params: { channel: { name: "A New Name" } }
@@ -39,7 +40,9 @@ RSpec.describe "Channels", type: :request do
         expect(channel.name).to be == "A New Name"
       end
     end
+  end
 
+  describe "/v1/channels/:id/join" do
     context "join channel" do
       let(:channel) { create(:channel) }
 

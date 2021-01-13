@@ -4,6 +4,7 @@ module V1
   class ChannelsController < BaseController
     inherit_resources
     defaults resource_class: Channel
+
     before_action :check_authorization
 
     def update

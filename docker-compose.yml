@@ -26,10 +26,12 @@ services:
       context: .
     image: homestars_code_challenge:latest
     volumes:
-      - ./:/app/:delegated
+      - ./:/app/
     env_file:
       - .env
-    command: "./docker/entrypoints/start_app.sh dev"
+    command: bundle exec rails s -b 0.0.0.0
+    ports:
+      - "3000:3000"
     depends_on:
       - redis
       - postgres
