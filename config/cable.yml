@@ -1,10 +1,14 @@
+default: &default
+  adapter: redis
+  url: <%= ENV.fetch("REDIS_URL") { "redis://localhost:6379/1" } %>
+  password: <%= ENV.fetch('REDIS_PASSWORD', nil).presence %>
+  channel_prefix: <%= "homestars_#{Rails.env}_action_cable"  %>
+
 development:
-  adapter: async
+  <<: *default
 
 test:
   adapter: test
 
 production:
-  adapter: redis
-  url: <%= ENV.fetch("REDIS_URL") { "redis://localhost:6379/1" } %>
-  channel_prefix: app_production
+  <<: *default

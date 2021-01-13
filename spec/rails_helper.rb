@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require 'spec_helper'
 
 if ENV["COVERAGE"]
   require "simplecov"
@@ -10,9 +11,9 @@ require "webmock/rspec"
 
 ENV["RAILS_ENV"] ||= "test"
 
-abort("The Rails environment is running in production mode!") if Rails.env.production?
-
 require File.expand_path("../../config/environment", __FILE__)
+
+abort("The Rails environment is running in production mode!") if Rails.env.production?
 
 require "rspec/rails"
 
@@ -28,7 +29,7 @@ module TestSetup
   end
 
   def disable_net_connect!
-    WebMock.disable_net_connect!
+    WebMock.disable_net_connect!(allow_localhost: true)
   end
 end
 
@@ -51,6 +52,11 @@ rescue ActiveRecord::PendingMigrationError
 end
 
 RSpec.configure do |config|
+  config.include Devise::Test::ControllerHelpers, type: :controller
+  config.include Devise::Test::IntegrationHelpers, type: :request
+  config.include Warden::Test::Helpers
+  config.include FactoryBot::Syntax::Methods
+
   config.fail_fast = ENV["RSPEC_FAIL_FAST"] == "1"
   config.silence_filter_announcements = ENV["RSPEC_SILENCE_FILTER_ANNOUNCEMENTS"] == "1"
   config.use_transactional_fixtures = true

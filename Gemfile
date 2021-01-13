@@ -4,19 +4,26 @@ source "https://rubygems.org"
 
 ruby "2.7.2"
 
-gem "rails", "~> 6.1.0"
+gem "rails"
 gem "puma", "~> 5.0"
+gem 'rack-cors', require: 'rack/cors'
 gem "rack-canonical-host"
 gem "recipient_interceptor"
 gem "redis", "~> 4.2"
-
+gem "pg", "~> 1.2"
 gem "bootsnap", ">= 1.4.4", require: false
 
 group :development, :test do
   gem "guard", "~> 2.16"
   gem "awesome_print"
+  gem "bullet"
+  gem "debase"
+  gem "ruby-debug-ide"
   gem "pry-byebug"
   gem "pry-rails"
+  gem "faker", "~> 2.15"
+  gem "factory_bot_rails"
+  gem "shoulda-matchers"
 end
 
 group :development do
@@ -42,9 +49,14 @@ group :test do
   gem "rspec-mocks", "~> 3.10"
   gem "rspec-rails", "~> 4.0"
   gem "rails-controller-testing", "~> 1.0"
-  gem "simplecov", "~> 0.20.0"
 end
 
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "jbuilder", "~> 2.10"
+
+gem "devise"
+
+gem "devise-jwt", "~> 0.8.0"
+
+gem "responders", "~> 3.0"
