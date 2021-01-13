@@ -11,6 +11,10 @@ module V1
       end
     end
 
+    def join
+      current_user.join(resource)
+    end
+
     protected
 
     def build_resource

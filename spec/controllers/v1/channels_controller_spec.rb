@@ -39,5 +39,19 @@ RSpec.describe 'Channels', type: :request do
       end
     end
 
+    context "join channel" do
+      let(:channel) { create(:channel) }
+
+      it "only creator can update the channel" do
+        put join_v1_channel_url(channel)
+        expect(response).to have_http_status(:ok)
+        json_response = JSON.parse(response.body)
+        expect(json_response['users']).not_to be_empty
+        expect(json_response['users']).to satisfy("include current user") do |users|
+          !users.find { |x| x['email'] === user.email }.nil?
+        end
+      end
+    end
+
   end
 end

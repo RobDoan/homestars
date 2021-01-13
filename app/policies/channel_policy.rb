@@ -4,6 +4,10 @@ class ChannelPolicy < ApplicationPolicy
     true
   end
 
+  def join?
+    true
+  end
+
   def create?
     true
   end

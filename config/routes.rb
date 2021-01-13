@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   namespace :v1, defaults: { format: :json } do
     resources :channels, only: [:create, :update, :index, :show] do
       resources :messages
+      member do
+        put :join
+      end
     end
   end
 

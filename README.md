@@ -8,10 +8,10 @@
     
 - Data Consistency. When we delete a user, we only soft delete that user.
 Otherwise, the system can not find created user, and his messages.
-If we set `dependencies: destroy` for channels, it may cause problem: other users will lost chat history.
-    
+If we set `dependencies: destroy` for channels, it may cause problem: other users will lost chat history.   
 - Move `PunditUser` to a class rather than user Struct inside Controller, it's hard and seems not correct to put there
-
+- Refactor `JoinedChannel` model. I did a mistake when naming it a little bit wrong, which causes problem in naming 
+for list of channels that user has joined
 # TODO
 
 1. As a consumer of the API, I can persist my chat messages

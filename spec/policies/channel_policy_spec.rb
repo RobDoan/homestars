@@ -8,7 +8,7 @@ RSpec.describe ChannelPolicy, type: :policy do
   let(:creator_context) { ApplicationController::PunditUser.new(creator, '127.0.0.0') }
   let(:user_context) { ApplicationController::PunditUser.new(user, '127.0.0.0') }
 
-  permissions :index?, :show?, :create? do
+  permissions :index?, :show?, :create?, :join? do
     it "any users have permission to view or create a channel" do
       expect(channel_policy).to permit(user_context, channel)
       expect(channel_policy).to permit(creator_context, channel)

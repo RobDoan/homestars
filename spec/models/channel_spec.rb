@@ -13,6 +13,7 @@ RSpec.describe Channel, type: :model do
   context '#associations' do
     it { is_expected.to belong_to(:creator) }
     it { is_expected.to have_many(:messages) }
+    it { is_expected.to have_many(:users) }
   end
 
 end
