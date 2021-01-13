@@ -60,3 +60,8 @@ gem "devise"
 gem "devise-jwt", "~> 0.8.0"
 
 gem "responders", "~> 3.0"
+
+gem "inherited_resources", "~> 1.12"
+gem "has_scope", "~> 0.7.2"
+
+gem "pundit", "~> 2.1"
