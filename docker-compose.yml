@@ -1,0 +1,16 @@
+version: "3.9"
+services:
+  redis:
+    image: redis:6.0.9-alpine3.12
+  app:
+    build:
+      dockerfile: ./docker/Dockerfile
+      context: .
+    image: homestars_code_challenge:latest
+    volumes:
+      - ./:/app/:delegated
+    env_file:
+      - .env
+    command: "./docker/entrypoints/start_app.sh dev"
+    depends_on:
+      - redis
