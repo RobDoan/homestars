@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class Channel < ApplicationRecord
-  belongs_to :creator, class_name: 'User', required: true
+  belongs_to :creator, class_name: "User", required: true
   has_many :messages
   has_many :joined_channels, dependent: :destroy
   has_many :users, through: :joined_channels

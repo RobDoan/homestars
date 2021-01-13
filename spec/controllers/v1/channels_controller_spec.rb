@@ -1,7 +1,8 @@
-RSpec.describe 'Channels', type: :request do
+# frozen_string_literal: true
 
-  describe '/v1/channels' do
-    let!(:user) { create(:user, password: 'test1234') }
+RSpec.describe "Channels", type: :request do
+  describe "/v1/channels" do
+    let!(:user) { create(:user, password: "test1234") }
     before do
       sign_in(user)
     end
@@ -13,13 +14,13 @@ RSpec.describe 'Channels', type: :request do
           post v1_channels_url, params: { channel: channel_params }
         }.to change { user.channels.count }.by(1)
         json_response = JSON.parse(response.body)
-        expect(json_response['name']).to be == 'Example Channel'
+        expect(json_response["name"]).to be == "Example Channel"
       end
 
       it "creating channel failed" do
         post v1_channels_url, params: { channel: {} }
         json_response = JSON.parse(response.body)
-        expect(json_response['errors']).not_to be_empty
+        expect(json_response["errors"]).not_to be_empty
       end
     end
 
@@ -46,12 +47,11 @@ RSpec.describe 'Channels', type: :request do
         put join_v1_channel_url(channel)
         expect(response).to have_http_status(:ok)
         json_response = JSON.parse(response.body)
-        expect(json_response['users']).not_to be_empty
-        expect(json_response['users']).to satisfy("include current user") do |users|
-          !users.find { |x| x['email'] === user.email }.nil?
+        expect(json_response["users"]).not_to be_empty
+        expect(json_response["users"]).to satisfy("include current user") do |users|
+          !users.find { |x| x["email"] === user.email }.nil?
         end
       end
     end
-
   end
 end

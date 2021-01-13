@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 RSpec.describe Message, type: :model do
   let(:message) { build(:message) }
 
@@ -10,7 +11,7 @@ RSpec.describe Message, type: :model do
     it { is_expected.to validate_presence_of(:content) }
   end
 
-  context '#associations' do
+  context "#associations" do
     it { is_expected.to belong_to(:sender) }
     it { is_expected.to belong_to(:channel) }
   end

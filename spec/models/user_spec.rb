@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 RSpec.describe User, type: :model do
   let(:user) { build(:user) }
 
@@ -6,11 +7,11 @@ RSpec.describe User, type: :model do
     expect { user.save }.to change { User.count }.by(1)
   end
 
-  context '#validations' do
+  context "#validations" do
     it { is_expected.to validate_presence_of(:email) }
   end
 
-  context '#associations' do
+  context "#associations" do
     it { is_expected.to have_many(:messages) }
     it { is_expected.to have_many(:channels) }
     it { is_expected.to have_many(:joined_channels) }
@@ -28,7 +29,7 @@ RSpec.describe User, type: :model do
       it { is_expected.to be_joined(channel) }
     end
 
-    it 'join a channel' do
+    it "join a channel" do
       user.join(channel2)
       expect(user).to be_joined(channel)
     end
@@ -38,7 +39,5 @@ RSpec.describe User, type: :model do
         user.join(channel)
       }.not_to change { user.participated_channels.count }
     end
-
   end
-
 end

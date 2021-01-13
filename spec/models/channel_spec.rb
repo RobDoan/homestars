@@ -1,4 +1,6 @@
-require 'rails_helper'
+# frozen_string_literal: true
+
+require "rails_helper"
 
 RSpec.describe Channel, type: :model do
   let(:channel) { build(:channel) }
@@ -10,10 +12,9 @@ RSpec.describe Channel, type: :model do
     it { is_expected.to validate_presence_of(:name) }
   end
 
-  context '#associations' do
+  context "#associations" do
     it { is_expected.to belong_to(:creator) }
     it { is_expected.to have_many(:messages) }
     it { is_expected.to have_many(:users) }
   end
-
 end

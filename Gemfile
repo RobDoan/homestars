@@ -6,7 +6,7 @@ ruby "2.7.2"
 
 gem "rails"
 gem "puma", "~> 5.0"
-gem 'rack-cors', require: 'rack/cors'
+gem "rack-cors", require: "rack/cors"
 gem "rack-canonical-host"
 gem "recipient_interceptor"
 gem "redis", "~> 4.2"
@@ -49,7 +49,7 @@ group :test do
   gem "rspec-mocks", "~> 3.10"
   gem "rspec-rails", "~> 4.0"
   gem "rails-controller-testing", "~> 1.0"
-  gem 'database_cleaner-active_record'
+  gem "database_cleaner-active_record"
 end
 
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]

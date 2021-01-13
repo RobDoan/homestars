@@ -1,5 +1,6 @@
 # frozen_string_literal: true
-require 'spec_helper'
+
+require "spec_helper"
 
 if ENV["COVERAGE"]
   require "simplecov"
@@ -16,8 +17,8 @@ require File.expand_path("../../config/environment", __FILE__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 
 require "rspec/rails"
-require 'pundit/rspec'
-require 'database_cleaner/active_record'
+require "pundit/rspec"
+require "database_cleaner/active_record"
 
 module TestSetup
   extend self

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationPolicy
   attr_reader :user_context, :record
 
@@ -49,6 +51,5 @@ class ApplicationPolicy
     def resolve
       scope
     end
-
   end
 end

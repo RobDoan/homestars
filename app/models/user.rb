@@ -11,7 +11,7 @@ class User < ApplicationRecord
   has_many :joined_channels, dependent: :destroy
   has_many :participated_channels,
            through: :joined_channels,
-           class_name: 'Channel', source: :channel
+           class_name: "Channel", source: :channel
 
   attr_reader :access_token
   enum availability: { online: 0, offline: 1 }

@@ -1,5 +1,6 @@
-class ChannelPolicy < ApplicationPolicy
+# frozen_string_literal: true
 
+class ChannelPolicy < ApplicationPolicy
   def index?
     true
   end
@@ -15,5 +16,4 @@ class ChannelPolicy < ApplicationPolicy
   def update?
     current_user.id == record.creator_id
   end
-
 end

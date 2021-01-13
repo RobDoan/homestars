@@ -3,6 +3,6 @@
 FactoryBot.define do
   factory :user, aliases: [:creator, :sender] do
     email { Faker::Internet.email }
-    password { 'ch@ng3m3' }
+    password { "ch@ng3m3" }
   end
 end

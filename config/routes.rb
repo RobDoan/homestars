@@ -2,8 +2,8 @@
 
 Rails.application.routes.draw do
   devise_for :users,
-             class_name: 'User',
-             module: 'v1',
+             class_name: "User",
+             module: "v1",
              format: :json
 
   namespace :v1, defaults: { format: :json } do
@@ -14,5 +14,4 @@ Rails.application.routes.draw do
       end
     end
   end
-
 end
