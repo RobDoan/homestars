@@ -9,6 +9,6 @@ export const joinedChannels = async () => {
   return JOINED_CHANNELS
 }
 
-export const notJoinedChannels = async () => {
+export const allChannels = async () => {
   return CHANNELS
 }

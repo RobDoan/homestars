@@ -16,7 +16,7 @@ export default function JoinedChannels() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(loadJoinedChannels())
-  })
+  }, [])
   const channels = useSelector(joinedChannels);
   const changeChannel = (channelId) => dispatch(selectChannel(channelId));
 

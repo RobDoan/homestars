@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
@@ -7,8 +7,9 @@ import Divider from '@material-ui/core/Divider';
 import UserInfo from "../features/authentication/UserInfo";
 import JoinedChannels from "../features/channel/JoinedChannels";
 import CurrentChatWindow from "../features/channel/CurrentChatWindow";
+import { ChannelPicker } from '../features/channel/Channels'
 
-const drawerWidth = 240;
+const drawerWidth = 300;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,6 +45,7 @@ export default function ChatPage() {
         <Paper elevation={0} className={classes.drawer}>
           <UserInfo name="Quy"/>
           <Divider/>
+          <ChannelPicker />
           <JoinedChannels/>
         </Paper>
       </Grid>
