@@ -7,6 +7,7 @@ import Box from "@material-ui/core/Box";
 import { currentChannel } from './channelsSlice'
 import ChannelHeader from "../../components/ChannelHeader";
 import MessageInput from "../../components/MessageInput";
+import MessageList from "../messages/MessageList";
 
 const ChannelHeaderSize = 80;
 const useStyles = makeStyles((theme) => ({
@@ -29,7 +30,9 @@ const useStyles = makeStyles((theme) => ({
   chatContent: {
     padding: theme.spacing(2),
     paddingTop: ChannelHeaderSize,
-    paddingBottom: 80
+    paddingBottom: 80,
+    height: '100%',
+    overflow: 'hidden',
   },
   inputMessage: {
     position: 'absolute',
@@ -53,6 +56,7 @@ export default function () {
       <Divider/>
     </Box>
     <Box className={classes.chatContent}>
+      <MessageList channel={channel}/>
     </Box>
     <Box className={classes.inputMessage}>
       <MessageInput/>
