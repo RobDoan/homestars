@@ -13,7 +13,7 @@ Docker version 20.10.2, build 2291f61
 $ docker-compose --version
 docker-compose version 1.27.4, build 40524192
 ```
-
+- create `config/master.key` file. `echo ${MASTER_KEY} > config/master.key`
 - Copy environment file `cp .env.example .env`
 - Modify `POSTGRES_PASSWORD` enviroment variable in `.env` file
 - Build docker image `docker-compose build`
