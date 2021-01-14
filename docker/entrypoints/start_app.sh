@@ -1,6 +1,4 @@
-#!/bin/bash
-
-set -e
+#!/bin/sh
 
 full_path=$(realpath $0)
 dir_path=$(dirname $full_path)
@@ -10,36 +8,38 @@ dir_path=$(dirname $full_path)
 rm -rf /app/tmp/pids/server.pid
 
 echo "waiting for Redis"
-wait_for ${REDIS_URL} ${REDIS_PORT}
+wait_for ${REDIS_HOST:-redis} ${REDIS_PORT:-6379}
 
 echo "waiting for database"
-wait_for ${PG_HOST}  ${PG_PORT}
+wait_for ${POSTGRES_HOST}  ${PG_PORT:-5432}
+
+mkdir -p tmp/pids/server.pid
 
 #  Start application
-start-app(){
-  bundle exec puma -C ${applicationDir}/config/puma.rb -e ${RAILS_ENV}
+startApp(){
+  bundle exec puma -C ./config/puma.rb -e ${RAILS_ENV}
 }
 
 # Start debugger
-start-debugger(){
+startDebugger(){
   bundle exec rdebug-ide --debug --host 0.0.0.0 --port 1234 --dispatcher-port 26162-- bin/rails server -p 8080 -b 0.0.0.0
 }
 
-print-helper(){
+printHelper(){
     echo "Usage: $0 {app|debugger}"
 }
 
 case $1 in
   app)
       echo "Starting Rails application ${RAILS_ENV}"
-      start-app
+      startApp
     ;;
   debugger)
       echo "Starting Rails application with Debugger ${RAILS_ENV}"
-      start-debugger
+      startDebugger
     ;;
   *)
-    print-helper
+    printHelper
     ;;
 esac
 

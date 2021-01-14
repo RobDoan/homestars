@@ -1,5 +1,5 @@
-#! /bin/bash
-print-wait-for-usage(){
+#! /bin/sh
+printWaitForUsage(){
   echo "Usage: $0 host port"
 }
 
@@ -9,7 +9,7 @@ wait_for(){
   echo $host
   if [ -z "$host" ] || [ -z "$port" ]
   then
-    print-wait-for-usage
+    printWaitForUsage
     exit 125
   fi
 

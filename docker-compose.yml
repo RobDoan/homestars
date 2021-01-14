@@ -29,7 +29,7 @@ services:
       - ./:/app/
     env_file:
       - .env
-    command: bundle exec rails s
+    command: ./docker/entrypoints/start_app.sh app
     ports:
       - "3000:3000"
     depends_on:
