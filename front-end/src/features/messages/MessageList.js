@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
     boxSizing: 'border-box',
     padding: theme.spacing(2),
     display: 'flex',
-    flexDirection: 'column',
+    flexDirection: 'column-reverse',
     marginBottom: theme.spacing(2),
     maxHeight: '100%',
     overflowY: 'auto',

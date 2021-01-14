@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import InputBase from '@material-ui/core/InputBase';
@@ -28,23 +28,38 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MessageInput() {
+export default function MessageInput(props) {
   const classes = useStyles();
+  const [message, setMessage] = useState('')
+  const typingMessageHandler = (e) => {
+    setMessage(e.target.value)
+  }
+  const submitMessage = () => {
+    props.onSubmitHanlder({content: message, type: 'text'})
+    setMessage('')
+  }
 
   return (
-    <Paper className={classes.root}>
-      <IconButton className={classes.iconButton} aria-label="menu" color='secondary'>
-        <GifIcon/>
-      </IconButton>
-      <Divider className={classes.divider} orientation="vertical"/>
-      <InputBase
-        className={classes.input}
-        placeholder="Type Message"
-      />
-      <Divider className={classes.divider} orientation="vertical"/>
-      <IconButton color="primary" className={classes.iconButton} aria-label="directions">
-        <SendIcon/>
-      </IconButton>
-    </Paper>
+    <React.Fragment>
+      <Paper className={classes.root}>
+        <IconButton className={classes.iconButton} aria-label="menu" color='secondary'>
+          <GifIcon/>
+        </IconButton>
+        <Divider className={classes.divider} orientation="vertical"/>
+        <InputBase
+          className={classes.input}
+          value={message}
+          placeholder="Type Message"
+          onChange={typingMessageHandler}
+        />
+        <Divider className={classes.divider} orientation="vertical"/>
+        <IconButton color="primary"
+                    className={classes.iconButton}
+                    onClick={submitMessage}
+                    aria-label="directions">
+          <SendIcon/>
+        </IconButton>
+      </Paper>
+    </React.Fragment>
   );
 }

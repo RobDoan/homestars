@@ -8,6 +8,7 @@ import { currentChannel } from './channelsSlice'
 import ChannelHeader from "../../components/ChannelHeader";
 import MessageInput from "../../components/MessageInput";
 import MessageList from "../messages/MessageList";
+import MessageEditor from "../messages/MessageEditor";
 
 const ChannelHeaderSize = 80;
 const useStyles = makeStyles((theme) => ({
@@ -59,7 +60,7 @@ export default function () {
       <MessageList channel={channel}/>
     </Box>
     <Box className={classes.inputMessage}>
-      <MessageInput/>
+      <MessageEditor channel={channel}/>
     </Box>
   </Box>
 }
