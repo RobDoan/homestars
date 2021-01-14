@@ -1,76 +1,72 @@
 import React from "react";
-import Container from "@material-ui/core/Container";
-import { makeStyles, fade } from '@material-ui/core/styles';
-import Typography from "@material-ui/core/Typography";
+import { makeStyles } from '@material-ui/core/styles';
+import Grid from "@material-ui/core/Grid";
+import Divider from "@material-ui/core/Divider";
 
+import ChannelHeader from "./ChannelHeader";
+import MessageInput from "./MessageInput";
+import Box from "@material-ui/core/Box";
+
+const ChannelHeaderSize = 80;
 const useStyles = makeStyles((theme) => ({
   root: {
+    boxSizing: 'border-box',
+    background: '#f8f6fd',
     height: '100%',
-    overflowY: 'auto',
-    flexGrow: 1,
-    width: '100%'
-  },
-  title: {
-    display: 'none',
-    [theme.breakpoints.up('sm')]: {
-      display: 'block',
-    },
-  },
-  search: {
+    width: '100%',
     position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
-    '&:hover': {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
-    },
-    marginRight: theme.spacing(2),
-    marginLeft: 0,
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-      marginLeft: theme.spacing(3),
-      width: 'auto',
-    },
   },
-  searchIcon: {
-    padding: theme.spacing(0, 2),
-    height: '100%',
+  channelHeader: {
     position: 'absolute',
-    pointerEvents: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  inputRoot: {
-    color: 'inherit',
-  },
-  inputInput: {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-    transition: theme.transitions.create('width'),
+    top: 0,
+    left: 0,
     width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: '20ch',
-    },
+    zIndex: theme.zIndex.appBar,
+    padding: theme.spacing(2)
   },
-  sectionDesktop: {
-    display: 'none',
-    [theme.breakpoints.up('md')]: {
-      display: 'flex',
-    },
+
+  chatContent: {
+    padding: theme.spacing(2),
+    paddingTop: ChannelHeaderSize,
+    paddingBottom: 80
   },
-  sectionMobile: {
-    display: 'flex',
-    [theme.breakpoints.up('md')]: {
-      display: 'none',
-    },
-  },
+  inputMessage: {
+    position: 'absolute',
+    width: '100%',
+    bottom: 0,
+    left: 0,
+    paddingTop: theme.spacing(1),
+    paddingBottom: theme.spacing(1)
+  }
 }));
 
 export default function () {
   const classes = useStyles();
-  return <Container className={classes.root} fluid>
-    <Typography> AJLsdlkjsalkdjsakldjslk </Typography>
-  </Container>
+  return <Box className={classes.root}>
+    <Box className={classes.channelHeader}>
+      <ChannelHeader/>
+      <Divider/>
+    </Box>
+    <Box className={classes.chatContent}>
+
+    </Box>
+    <Box className={classes.inputMessage}>
+      <MessageInput/>
+    </Box>
+
+  </Box>
+  return <Grid direction='column' className={classes.chat} justify="flex-start">
+    <Grid item>
+      <ChannelHeader/>
+      <Divider/>
+    </Grid>
+    <Grid item className={classes.chatContent}>
+      asd
+    </Grid>
+    <Grid item className={classes.inputMessage}>
+
+    </Grid>
+  </Grid>
+
 
 }

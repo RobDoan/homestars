@@ -1,95 +1,56 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 
 import CurrentChatWindow from '../components/CurrentChatWindow';
 import Paper from "@material-ui/core/Paper";
-import Container from "@material-ui/core/Container";
+
+import UserInfo from "../components/UserInfo";
+import JoinedChannels from "../components/JoinedChannels";
+import Grid from "@material-ui/core/Grid";
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
-  appBar: {
-    width: `calc(100% - ${drawerWidth}px)`,
-    padding: 0,
-    margin: 0,
-    marginBottom: theme.spacing(2)
-  },
-  chatWrapper: {
+  root: {
+    boxSizing: 'border-box',
+    paddingBottom: theme.spacing(4),
+    paddingTop: theme.spacing(4),
+    height: '100vh',
     display: 'flex',
     alignItems: 'stretch',
   },
   drawer: {
+    height: '100%',
     flexShrink: 0,
+    flexGrow: 0,
     width: drawerWidth,
-    height: '80vh'
-  },
-  // necessary for content to be below app bar
-  toolbar: theme.mixins.toolbar,
-  contentWrapper: {
-    position: "relative",
-    flexGrow: 1,
-
+    background: 'linear-gradient(#8e2de2 0%, #4a00e0 100%)',
+    color: '#fff'
   },
   content: {
+    display: 'flex',
     height: '100%',
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
-    padding: theme.spacing(3),
   },
 }));
 
 export default function PermanentDrawerRight() {
   const classes = useStyles();
-
   return (
-    <div>
-
-      <Container className={classes.chatWrapper} fluid>
+    <Grid container className={classes.root}
+          alignItems='stretch' justify="space-between">
+      <Grid item>
         <Paper elevation={0} className={classes.drawer}>
-          <Typography variant="h2" noWrap>Test</Typography>
+          <UserInfo name="Quy"/>
           <Divider/>
-          <List>
-            {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>{index % 2 === 0 ? <InboxIcon/> : <MailIcon/>}</ListItemIcon>
-                <ListItemText primary={text}/>
-              </ListItem>
-            ))}
-          </List>
-          <Divider/>
-          <List>
-            {['All mail', 'Trash', 'Spam'].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>{index % 2 === 0 ? <InboxIcon/> : <MailIcon/>}</ListItemIcon>
-                <ListItemText primary={text}/>
-              </ListItem>
-            ))}
-          </List>
+          <JoinedChannels/>
         </Paper>
-        <main className={classes.contentWrapper}>
-          <AppBar position="static">
-            <Toolbar>
-              <Typography variant="h6" noWrap>
-                Permanent drawer
-              </Typography>
-            </Toolbar>
-          </AppBar>
-          <Paper elevation={0} className={classes.content}>
-            <CurrentChatWindow/>
-          </Paper>
-
-        </main>
-      </Container>
-    </div>
+      </Grid>
+      <Grid item className={classes.content}>
+        <CurrentChatWindow/>
+      </Grid>
+    </Grid>
   );
 }
