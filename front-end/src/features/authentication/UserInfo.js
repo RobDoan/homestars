@@ -1,9 +1,12 @@
 import React from "react";
+import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Avatar from "@material-ui/core/Avatar";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
+
+import { loggedInUser } from './authenticationSlice'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,11 +23,11 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export default function (props) {
+export default function UserInfo() {
   const classes = useStyles();
-  const {name} = props;
-  const firstLetter = name[0]
-  return <Grid container spacing={2}
+  const user = useSelector(loggedInUser)
+  const firstLetter = user && user[0]
+  return user && <Grid container spacing={2}
                className={classes.root}
                alignItems='center' wrap='nowrap'>
     <Grid item xs={4}>
@@ -33,7 +36,7 @@ export default function (props) {
     <Grid item xs={8}>
       <Box className={classes.nameWrapper}>
         <Typography variant="h6" className={classes.name}>
-          {name}
+          {user}
         </Typography>
       </Box>
     </Grid>

@@ -10,8 +10,8 @@ import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
 import Grid from '@material-ui/core/Grid';
 import { deepOrange, deepPurple, lightBlue, orange } from '@material-ui/core/colors';
-import sampleImage from '../assets/room.jpeg';
 
+import sampleImage from '../assets/room.jpeg';
 
 const COLORS = [deepOrange, deepPurple, lightBlue, orange];
 const SAMPLE_NAMES = ["Quy", "Andy", "John"];

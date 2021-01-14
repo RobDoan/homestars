@@ -1,13 +1,13 @@
 import React from 'react';
+import { useDispatch } from "react-redux";
 import { makeStyles } from '@material-ui/core/styles';
+import Paper from "@material-ui/core/Paper";
+import Grid from "@material-ui/core/Grid";
 import Divider from '@material-ui/core/Divider';
 
 import CurrentChatWindow from '../components/CurrentChatWindow';
-import Paper from "@material-ui/core/Paper";
-
-import UserInfo from "../components/UserInfo";
-import JoinedChannels from "../components/JoinedChannels";
-import Grid from "@material-ui/core/Grid";
+import UserInfo from "../features/authentication/UserInfo";
+import JoinedChannels from "../features/channel/JoinedChannels";
 
 const drawerWidth = 240;
 
@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function PermanentDrawerRight() {
+export default function ChatPage() {
   const classes = useStyles();
   return (
     <Grid container className={classes.root}
@@ -49,7 +49,7 @@ export default function PermanentDrawerRight() {
         </Paper>
       </Grid>
       <Grid item className={classes.content}>
-        <CurrentChatWindow/>
+        <CurrentChatWindow />
       </Grid>
     </Grid>
   );

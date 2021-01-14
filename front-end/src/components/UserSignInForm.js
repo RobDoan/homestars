@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -15,40 +15,49 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function UserSignInForm() {
+export default function UserSignInForm(props) {
   const classes = useStyles();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('')
+  const loginFn = (e) => {
+    e.preventDefault()
+    props.onSubmitFn({email, password})
+  }
+
   return <Container maxWidth="sm">
-    <form className={classes.form} noValidate>
-      <TextField
-        variant="outlined"
-        margin="normal"
-        required
-        fullWidth
-        id="email"
-        label="Email Address"
-        name="email"
-        autoComplete="email"
-        autoFocus
-      />
-      <TextField
-        variant="outlined"
-        margin="normal"
-        required
-        fullWidth
-        name="password"
-        label="Password"
-        type="password"
-        id="password"
-        autoComplete="current-password"
-      />
-      <Button
-        type="submit"
-        fullWidth
-        variant="contained"
-        color="primary"
-        className={classes.submit}>
-        Sign In
-      </Button>
-    </form>
+    <TextField
+      variant="outlined"
+      margin="normal"
+      required
+      fullWidth
+      id="email"
+      label="Email Address"
+      name="email"
+      autoComplete="email"
+      autoFocus
+      value={email}
+      onChange={e => setEmail(e.target.value)}
+    />
+    <TextField
+      variant="outlined"
+      margin="normal"
+      required
+      fullWidth
+      name="password"
+      label="Password"
+      type="password"
+      id="password"
+      autoComplete="current-password"
+      value={password}
+      onChange={e => setPassword(e.target.value)}
+    />
+    <Button
+      type="submit"
+      fullWidth
+      variant="contained"
+      color="primary"
+      className={classes.submit} onClick={loginFn}>
+      Sign In
+    </Button>
   </Container>
 }

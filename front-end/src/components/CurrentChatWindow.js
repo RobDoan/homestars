@@ -1,11 +1,10 @@
 import React from "react";
 import { makeStyles } from '@material-ui/core/styles';
-import Grid from "@material-ui/core/Grid";
 import Divider from "@material-ui/core/Divider";
+import Box from "@material-ui/core/Box";
 
 import ChannelHeader from "./ChannelHeader";
 import MessageInput from "./MessageInput";
-import Box from "@material-ui/core/Box";
 
 const ChannelHeaderSize = 80;
 const useStyles = makeStyles((theme) => ({
@@ -48,25 +47,9 @@ export default function () {
       <Divider/>
     </Box>
     <Box className={classes.chatContent}>
-
     </Box>
     <Box className={classes.inputMessage}>
       <MessageInput/>
     </Box>
-
   </Box>
-  return <Grid direction='column' className={classes.chat} justify="flex-start">
-    <Grid item>
-      <ChannelHeader/>
-      <Divider/>
-    </Grid>
-    <Grid item className={classes.chatContent}>
-      asd
-    </Grid>
-    <Grid item className={classes.inputMessage}>
-
-    </Grid>
-  </Grid>
-
-
 }
