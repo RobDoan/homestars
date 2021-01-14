@@ -15,9 +15,9 @@ docker-compose version 1.27.4, build 40524192
 ```
 
 - Copy environment file `cp .env.example .env`
-- Modify `POSTGRES_PASSWORD` enviroment variable in .env file
+- Modify `POSTGRES_PASSWORD` enviroment variable in `.env` file
 - Build docker image `docker-compose build`
-- After building the image you would have to reset the database using the following command. `docker-compose run --rm rails bundle exec rails db:reset`
+- After building the image you would have to reset the database using the following command. `docker-compose run --rm app sh -c  "./docker/entrypoints/wait.sh && bundle exec rake db:reset"`
 - To run app `docker-compose up`.
 Login with credentials
 ```
@@ -52,6 +52,7 @@ If we set `dependencies: destroy` for channels, it may cause problem: other user
 - Move `PunditUser` to a class rather than user Struct inside Controller, it's hard and seems not correct to put there
 - Refactor `JoinedChannel` model. I did a mistake when naming it a little bit wrong, which causes problem in naming
 for list of channels that user has joined
+- Write `Dockerfile` better.
 
 ### TODO
 - [x] 1. As a consumer of the API, I can persist my chat messages
