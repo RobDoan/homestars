@@ -1,13 +1,12 @@
 import React from 'react';
-import { useDispatch } from "react-redux";
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Divider from '@material-ui/core/Divider';
 
-import CurrentChatWindow from '../components/CurrentChatWindow';
 import UserInfo from "../features/authentication/UserInfo";
 import JoinedChannels from "../features/channel/JoinedChannels";
+import CurrentChatWindow from "../features/channel/CurrentChatWindow";
 
 const drawerWidth = 240;
 
@@ -49,7 +48,7 @@ export default function ChatPage() {
         </Paper>
       </Grid>
       <Grid item className={classes.content}>
-        <CurrentChatWindow />
+        <CurrentChatWindow/>
       </Grid>
     </Grid>
   );

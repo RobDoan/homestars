@@ -19,7 +19,8 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function ChannelHeader() {
+export default function ChannelHeader(props) {
+  const {channel} = props
   const classes = useStyles();
   return <Grid container spacing={2} alignItems='center' wrap="nowrap" className={classes.root}>
     <Grid item className={classes.avatarWrapper}>
@@ -27,7 +28,7 @@ export default function ChannelHeader() {
     </Grid>
     <Grid item className={classes.channelTitleWrapper}>
       <Typography gutterBottom variant="h5" component="h2">
-        Channel Name
+        {channel.name}
       </Typography>
     </Grid>
   </Grid>

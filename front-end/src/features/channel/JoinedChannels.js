@@ -10,7 +10,7 @@ import List from "@material-ui/core/List";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import IconButton from "@material-ui/core/IconButton";
 
-import { joinedChannels, loadJoinedChannels } from './channelsSlice'
+import { joinedChannels, loadJoinedChannels, selectChannel } from './channelsSlice'
 
 export default function JoinedChannels() {
   const dispatch = useDispatch();
@@ -18,9 +18,11 @@ export default function JoinedChannels() {
     dispatch(loadJoinedChannels())
   })
   const channels = useSelector(joinedChannels);
+  const changeChannel = (channelId) => dispatch(selectChannel(channelId));
+
   return <List>
     {channels.map((channel, index) => (
-      <ListItem button key={channel.id}>
+      <ListItem button key={channel.id} onClick={() => changeChannel(channel.id)}>
         <ListItemIcon>{index % 2 === 0 ? <PeopleOutlineRoundedIcon/> : <PersonRoundedIcon/>}</ListItemIcon>
         <ListItemText primary={channel.name}/>
         <ListItemSecondaryAction>

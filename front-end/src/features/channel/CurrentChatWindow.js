@@ -1,10 +1,12 @@
 import React from "react";
+import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Divider from "@material-ui/core/Divider";
 import Box from "@material-ui/core/Box";
 
-import ChannelHeader from "./ChannelHeader";
-import MessageInput from "./MessageInput";
+import { currentChannel } from './channelsSlice'
+import ChannelHeader from "../../components/ChannelHeader";
+import MessageInput from "../../components/MessageInput";
 
 const ChannelHeaderSize = 80;
 const useStyles = makeStyles((theme) => ({
@@ -41,9 +43,13 @@ const useStyles = makeStyles((theme) => ({
 
 export default function () {
   const classes = useStyles();
+  const channel = useSelector(currentChannel)
+
+  if (!channel) return <div/>;
+
   return <Box className={classes.root}>
     <Box className={classes.channelHeader}>
-      <ChannelHeader/>
+      <ChannelHeader channel={channel}/>
       <Divider/>
     </Box>
     <Box className={classes.chatContent}>
