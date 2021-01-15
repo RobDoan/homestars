@@ -6,3 +6,8 @@ Due to limitation of time for code challenge. I used `react-create-app` to init 
 ### Things that I would like to improve if I have more time
 
 - [ ] Normally, I prefer using `rxjs`. So, If I have more time, I will convert `redux-thunk` to `redux-observable`
+- [ ] Handle expired token
+- [ ] Handle errors message when logging in has been failed.
+- [ ] Add loading more for front-end
+- [ ] Add [workbox](https://developers.google.com/web/tools/workbox) for caching
+- [ ] Write more test for front-end.
