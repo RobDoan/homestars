@@ -1,14 +1,11 @@
-FROM node:13.12.0-alpine
+FROM node:12.20.0-alpine3.12
 
-RUN npm install -g yarn && \
-    mkidr -p /app
+RUN mkdir -p /app
+COPY yarn.lock package.json /app/
 
-COPY package.json /app
-COPY package-lock.json /app
-
+RUN yarn install --cwd /app
 WORKDIR /app
 
-RUN yarn install
 COPY . .
 
 CMD ["yarn", "start"]
