@@ -15,3 +15,5 @@ Due to limitation of time for code challenge. I used `react-create-app` to init 
 - [ ] Add [workbox](https://developers.google.com/web/tools/workbox) for caching
 - [ ] Write more test for front-end.
 - [ ] `CurrentChatWindow` should be refactored. It better to not let it depends on __messages feature__
+- [ ] Improve Select Channel Dialog
+
