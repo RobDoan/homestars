@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const BaseURL = `http://localhost:3000`
+const BaseURL = `/api/`
 
 export function createAxiosInstance({timeout = 6000, authToken, contentType = 'application/json'} = {}) {
   const instance = axios.create({

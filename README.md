@@ -12,7 +12,7 @@
   Login with credentials
 
 ```
-    url: http://localhost:3000
+    url: http://localhost:8080
     user_name: admin@example.com
     password: h0m3StarsChall3nger
 ```
