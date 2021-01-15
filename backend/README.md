@@ -1,4 +1,4 @@
-# Home Stars Code challenger
+# Home Stars Code challenge
 
 - To make it to be easier for releasing I didn't not ignore `master.key` file in git repository
 ### Setup
