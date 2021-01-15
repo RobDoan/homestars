@@ -9,7 +9,7 @@
 - Init data `docker-compose run --rm app sh -c  "./docker/entrypoints/wait.sh && bundle exec rake db:reset"`  
 - To run app `docker-compose up`.
   
-  Login with credentials
+  Login with credentials. It may take a while for rails app up
 
 ```
     url: http://localhost:8080
