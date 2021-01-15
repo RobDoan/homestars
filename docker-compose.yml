@@ -8,14 +8,14 @@ services:
     restart: always
     command: [ "sh", "-c", "redis-server --requirepass \"$REDIS_PASSWORD\"" ]
     env_file:
-      - .env
+      - backend/.env
     volumes:
       - redis:/data/redis
   postgres:
     image: postgres:12
     restart: always
     env_file:
-      - .env
+      - backend/.env
     ports:
       - '5432:5432'
     volumes:
@@ -23,15 +23,28 @@ services:
   app:
     build:
       dockerfile: ./docker/Dockerfile
-      context: .
+      context: backend/
     image: homestars_code_challenge:latest
     volumes:
-      - ./:/app/
+      - ./backend/:/app/
     env_file:
-      - .env
+      - backend/.env
     command: ./docker/entrypoints/start_app.sh app
     ports:
       - "3000:3000"
     depends_on:
       - redis
       - postgres
+  ui:
+    build:
+      dockerfile: ./Dockerfile
+      context: frontend
+    image: homestars_code_challenge_react:latest
+    environment:
+      - PORT=3001
+      - API_HOST=localhost:3000
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./frontend/src/:/app/src/
+
