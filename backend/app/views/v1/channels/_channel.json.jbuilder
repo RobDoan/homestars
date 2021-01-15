@@ -1,0 +1,1 @@
+json.(channel, :id, :name)

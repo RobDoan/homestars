@@ -9,6 +9,9 @@ class ChannelPolicy < ApplicationPolicy
     true
   end
 
+  def joined_channels?
+    true
+  end
   def create?
     true
   end

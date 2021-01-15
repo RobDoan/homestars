@@ -53,6 +53,7 @@ If we set `dependencies: destroy` for channels, it may cause problem: other user
 - Refactor `JoinedChannel` model. I did a mistake when naming it a little bit wrong, which causes problem in naming
 for list of channels that user has joined
 - Write `Dockerfile` better.
+- Add pagination for message list
 
 ### TODO
 - [x] 1. As a consumer of the API, I can persist my chat messages

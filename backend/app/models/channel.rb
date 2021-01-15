@@ -7,4 +7,5 @@ class Channel < ApplicationRecord
   has_many :users, through: :joined_channels
 
   validates :name, presence: true
+
 end

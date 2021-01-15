@@ -19,10 +19,8 @@ module Builders
     private
 
     def message_attributes
-      {
-        content: params[:message],
-        sender: user
-      }
+      message_param = params.require(:message).permit(:content, :message_type)
+      message_param.merge({ sender_id: user.id })
     end
   end
 end

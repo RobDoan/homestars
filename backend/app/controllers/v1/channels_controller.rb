@@ -7,6 +7,10 @@ module V1
 
     before_action :check_authorization
 
+    def joined_channels
+      @channels = current_user.participated_channels
+    end
+
     def update
       update! do |success, failure|
         success.json { render json: resource }
@@ -20,17 +24,21 @@ module V1
 
     protected
 
-      def build_resource
-        @channel ||= current_user.channels.build(permitted_params[:channel])
-      end
+    def build_resource
+      @channel ||= current_user.channels.build(permitted_params[:channel])
+    end
 
-      def permitted_params
-        params.permit(channel: [:name])
-      end
+    def permitted_params
+      params.permit(channel: [:name])
+    end
 
-      def check_authorization
-        model = collection_resource? ? Channel : resource
-        authorize(model)
-      end
+    def check_authorization
+      model = collection_resource? ? Channel : resource
+      authorize(model)
+    end
+
+    def collection_resource?
+      super || %w(joined_channels).include?(action_name)
+    end
   end
 end

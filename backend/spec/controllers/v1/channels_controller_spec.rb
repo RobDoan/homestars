@@ -57,4 +57,21 @@ RSpec.describe "Channels", type: :request do
       end
     end
   end
+
+  describe "/v1/channels/join_channels" do
+    context "join channel" do
+      let(:channel) { create(:channel) }
+
+      it "return list of channels that user has join" do
+        user.join(channel)
+        get joined_channels_v1_channels_url
+        expect(response).to have_http_status(:ok)
+        json_response = JSON.parse(response.body)
+
+        expect(json_response).to satisfy("include channel") do |channels|
+          !channels.find { |x| x["name"] === channel.name }.nil?
+        end
+      end
+    end
+  end
 end
