@@ -16,3 +16,7 @@
     user_name: admin@example.com
     password: h0m3StarsChall3nger
 ```
+
+![Login Window](./login.png)
+
+![Chat Window](./chat.png)
