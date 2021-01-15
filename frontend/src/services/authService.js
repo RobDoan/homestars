@@ -1,9 +1,17 @@
-import axios from "axios";
 import * as tokenStorage from './tokenStorage'
+import {createAxiosInstance} from "./chat_api";
+
 export const login = async (params) => {
-  // const res = await axios.post("localhost:3000/users/sign_in", {user: params})
-  // console.info(res)
-  // return res.data
-  tokenStorage.saveToken("ABC")
-  return { token: 'ABC', user: params.email}
+  const axios = createAxiosInstance()
+  const res = await axios.post(`http://localhost:3000/users/sign_in.json`, {user: params})
+  const data = res.data
+  tokenStorage.saveToken(data.token)
+  return res.data
+}
+
+export const checkLogin = async () => {
+  const authToken = tokenStorage.getToken()
+  const axios = createAxiosInstance({authToken})
+  const res = await axios.get(`http://localhost:3000/v1/my_profile`)
+  return res.data
 }

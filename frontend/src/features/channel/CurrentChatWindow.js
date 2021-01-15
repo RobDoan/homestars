@@ -1,12 +1,12 @@
 import React from "react";
-import { useSelector } from 'react-redux';
-import { makeStyles } from '@material-ui/core/styles';
+import {useSelector} from 'react-redux';
+import {makeStyles} from '@material-ui/core/styles';
 import Divider from "@material-ui/core/Divider";
 import Box from "@material-ui/core/Box";
 
-import { currentChannel } from './channelsSlice'
+import {currentChannel} from './channelsSlice'
 import ChannelHeader from "../../components/ChannelHeader";
-import MessageInput from "../../components/MessageInput";
+
 import MessageList from "../messages/MessageList";
 import MessageEditor from "../messages/MessageEditor";
 

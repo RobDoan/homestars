@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, {useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import PeopleOutlineRoundedIcon from '@material-ui/icons/PeopleOutlineRounded';
 import PersonRoundedIcon from '@material-ui/icons/PersonRounded';
 import ListItem from "@material-ui/core/ListItem";
@@ -10,7 +10,7 @@ import List from "@material-ui/core/List";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import IconButton from "@material-ui/core/IconButton";
 
-import { joinedChannels, loadJoinedChannels, selectChannel } from './channelsSlice'
+import {joinedChannels, loadJoinedChannels, selectChannel} from './channelsSlice'
 
 export default function JoinedChannels() {
   const dispatch = useDispatch();
@@ -18,7 +18,10 @@ export default function JoinedChannels() {
     dispatch(loadJoinedChannels())
   }, [])
   const channels = useSelector(joinedChannels);
-  const changeChannel = (channelId) => dispatch(selectChannel(channelId));
+  const changeChannel = (channelId) => {
+    debugger
+    dispatch(selectChannel(channelId));
+  }
 
   return <List>
     {channels.map((channel, index) => (

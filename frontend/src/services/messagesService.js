@@ -1,16 +1,18 @@
-import { createAxiosInstance } from './chat_api'
+import {createAxiosInstance} from './chat_api'
 import * as tokenStorage from './tokenStorage'
 
-import { MESSAGES, MESSAGES2 } from "./mocks";
+import {MESSAGES, MESSAGES2} from "./mocks";
 
 export const getMessages = async (channel) => {
   const authToken = tokenStorage.getToken()
   const axios = createAxiosInstance({authToken})
-  return channel.id % 2 === 0 ? MESSAGES2 : MESSAGES
+  const res = await axios.get(`/v1/channels/${channel.id}/messages`)
+  return res.data
 }
 
 export const sendMessage = async (channel, message) => {
-  console.info(message)
-  const {content, messageType} = message
-  return { id: Math.random(100000), content, user: {email: 'SOmeoneEls'}}
+  const authToken = tokenStorage.getToken()
+  const axios = createAxiosInstance({authToken})
+  const res = await axios.post(`/v1/channels/${channel.id}/messages`, {message: message})
+  return res.data
 }

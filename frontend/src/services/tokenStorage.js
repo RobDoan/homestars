@@ -9,5 +9,5 @@ export const deleteToken = () => {
 }
 
 export const getToken = () => {
-  localStorage.getItem(TOKEN_KEY)
+  return localStorage.getItem(TOKEN_KEY)
 }

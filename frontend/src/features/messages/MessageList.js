@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from 'react-redux';
-import { loadMessages, messages } from './messageSlice'
-import { Box } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import React, {useEffect} from "react";
+import {useDispatch, useSelector} from 'react-redux';
+import {loadMessages, messages} from './messageSlice'
+import {Box} from "@material-ui/core";
+import {makeStyles} from "@material-ui/core/styles";
 
 import TextMessage from "../../components/messages/TextMessage";
 
@@ -36,10 +36,10 @@ export default function MessageList(props) {
   return <Box className={classes.root}>
     {
       messagesOnChannel.map((message, index) => {
-        const isMine = index%2 === 0
+        const {is_mine: isMine} = message
         const boxClass = isMine ? classes.itemRight : classes.itemLeft
         return <Box className={boxClass}>
-          <TextMessage message={message} isMine={isMine}/>
+          <TextMessage message={message}/>
         </Box>
       })
     }

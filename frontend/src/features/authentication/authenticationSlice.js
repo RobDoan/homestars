@@ -1,6 +1,7 @@
-import { createSlice } from '@reduxjs/toolkit';
+import {createSlice} from '@reduxjs/toolkit';
 
 import * as AuthService from '../../services/authService'
+import * as tokenStorage from '../../services/tokenStorage'
 
 export const authenticationSlice = createSlice({
   name: 'authentication',
@@ -27,6 +28,14 @@ export const login = userParams => dispatch => {
     dispatch(loginSuccess({token, user}))
   })
 };
+
+export const checkLogin = () => dispatch => {
+  const token = tokenStorage.getToken()
+  AuthService.checkLogin()
+    .then(user => {
+      dispatch(loginSuccess({token, user}))
+    })
+}
 
 export const isUserLoggedIn = state => !!state.authentication.token
 export const loggedInUser = state => state.authentication.loggedInUser

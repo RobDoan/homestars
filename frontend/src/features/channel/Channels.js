@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, {useEffect, useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import AddIcon from '@material-ui/icons/Add';
 import IconButton from "@material-ui/core/IconButton";
 
-import { allChannels, getChannels, joinChannel } from './channelsSlice'
+import {allChannels, getChannels, joinChannel} from './channelsSlice'
 import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -20,9 +20,12 @@ export function ChannelList() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getChannels())
-  })
+  }, [])
+
   const channels = useSelector(allChannels);
-  const addChannel = (channel) => dispatch(joinChannel(channel));
+  const addChannel = (channel) => {
+    dispatch(joinChannel(channel));
+  }
 
   return <Grid container spacing={2}>
     {channels.map((channel) => (
@@ -47,7 +50,7 @@ export function ChannelList() {
 export function ChannelsModal(props) {
   const {open, handleClose} = props
   return <Dialog open={open}
-                 maxWidth
+                 maxWidth='md'
                  onClose={handleClose}>
     <DialogTitle> Join Channel </DialogTitle>
     <DialogContent>

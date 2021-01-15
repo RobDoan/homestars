@@ -1,8 +1,8 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
-import { blue, green } from '@material-ui/core/colors';
+import {blue, green} from '@material-ui/core/colors';
 import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles((theme) => ({
@@ -50,8 +50,10 @@ function MessageAvatar(props) {
 
 export default function TextMessage(props) {
   const classes = useStyles();
-  const {message = {}, isMine} = props
-  const {content = '', user, created_at: createdAt} = message
+  const {message} = props
+  const {is_mine: isMine} = message
+  debugger
+  const {content = '', sender: user, created_at: createdAt} = message
   return (
     <Grid container className={classes.root} justify="space-between"
           alignItems="center" spacing={2} wrap="nowrap">

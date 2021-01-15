@@ -1,14 +1,23 @@
-import { createAxiosInstance } from './chat_api'
+import {createAxiosInstance} from './chat_api'
 import * as tokenStorage from './tokenStorage'
-
-import { CHANNELS, JOINED_CHANNELS } from "./mocks";
 
 export const joinedChannels = async () => {
   const authToken = tokenStorage.getToken()
   const axios = createAxiosInstance({authToken})
-  return JOINED_CHANNELS
+  return axios.get('/v1/channels/joined_channels').then(r => r.data)
 }
 
 export const allChannels = async () => {
-  return CHANNELS
+  const authToken = tokenStorage.getToken()
+  const axios = createAxiosInstance({authToken})
+  const res =  await axios.get('/v1/channels')
+  return res.data
+}
+
+
+export const joinChannel = async(channel) => {
+  const authToken = tokenStorage.getToken()
+  const axios = createAxiosInstance({authToken})
+  const res = await axios.put(`/v1/channels/${channel.id}/join`)
+  return res.data
 }

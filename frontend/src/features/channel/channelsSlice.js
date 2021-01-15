@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import {createSlice} from '@reduxjs/toolkit';
 
 import * as ChannelsService from '../../services/channelsService'
 
@@ -28,14 +28,14 @@ export const channelsSlice = createSlice({
       state.channels = payload
     },
     joinChannel: (state, {payload}) => {
-      if (!isExists(state.joinedChannels, payload)){
+      if (!isExists(state.joinedChannels, payload)) {
         state.joinedChannels = [payload, ...state.joinedChannels]
       }
     }
   },
 });
 
-export const {updateJoinedChannels, selectChannel, updateChannels, joinChannel} = channelsSlice.actions;
+export const {updateJoinedChannels, selectChannel, updateChannels} = channelsSlice.actions;
 
 export const loadJoinedChannels = () => dispatch => {
   ChannelsService.joinedChannels().then(data => {
@@ -45,9 +45,15 @@ export const loadJoinedChannels = () => dispatch => {
 
 export const getChannels = () => dispatch => {
   ChannelsService.allChannels().then(data => {
-    console.info("CHANNEL", data)
     dispatch(updateChannels(data))
   })
+}
+
+export const joinChannel = (channel) => dispatch => {
+  ChannelsService.joinChannel(channel)
+    .then(data => {
+      dispatch(channelsSlice.actions.joinChannel(data))
+    })
 }
 
 export const joinedChannels = state => state.channels.joinedChannels;

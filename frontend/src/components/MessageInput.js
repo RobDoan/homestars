@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import React, {useState} from 'react';
+import {makeStyles} from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import InputBase from '@material-ui/core/InputBase';
 import Divider from '@material-ui/core/Divider';
@@ -35,8 +35,14 @@ export default function MessageInput(props) {
     setMessage(e.target.value)
   }
   const submitMessage = () => {
-    props.onSubmitHanlder({content: message, type: 'text'})
+    props.onSubmitHanlder({content: message, message_type: 'text'})
     setMessage('')
+  }
+
+  const keyPressHandler = (e) => {
+    if (e.key === 'Enter') {
+      submitMessage()
+    }
   }
 
   return (
@@ -51,6 +57,7 @@ export default function MessageInput(props) {
           value={message}
           placeholder="Type Message"
           onChange={typingMessageHandler}
+          onKeyPress={keyPressHandler}
         />
         <Divider className={classes.divider} orientation="vertical"/>
         <IconButton color="primary"

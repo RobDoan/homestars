@@ -26,7 +26,8 @@ const useStyles = makeStyles((theme) => ({
 export default function UserInfo() {
   const classes = useStyles();
   const user = useSelector(loggedInUser)
-  const firstLetter = user && user[0]
+  const { email} = user
+  const firstLetter = email && email[0]
   return user && <Grid container spacing={2}
                className={classes.root}
                alignItems='center' wrap='nowrap'>
@@ -36,7 +37,7 @@ export default function UserInfo() {
     <Grid item xs={8}>
       <Box className={classes.nameWrapper}>
         <Typography variant="h6" className={classes.name}>
-          {user}
+          {email}
         </Typography>
       </Box>
     </Grid>

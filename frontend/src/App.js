@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import React, {useEffect} from 'react';
+import {useSelector, useDispatch} from 'react-redux';
 import Container from '@material-ui/core/Container';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import { isUserLoggedIn } from './features/authentication/authenticationSlice';
+import {isUserLoggedIn, checkLogin} from './features/authentication/authenticationSlice';
 import LoginPage from './pages/LoginPage';
 import ChatPage from './pages/ChatPage';
 
@@ -10,10 +10,11 @@ import ChatPage from './pages/ChatPage';
 
 
 function AppRouter() {
+  const dispatch = useDispatch()
   const isLoggedIn = useSelector(isUserLoggedIn);
   useEffect(() => {
-    console.info(`ISLOGGED IN  ${isLoggedIn}`)
-  })
+    dispatch(checkLogin())
+  }, [])
   const RenderComponent = isLoggedIn ? ChatPage : LoginPage;
   return <RenderComponent/>
 }
