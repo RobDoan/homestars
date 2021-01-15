@@ -5,6 +5,7 @@
 
 ### User Docker
 
+- Copy and modify `.env` file. `cp backend/.env.exampe backend/.env`
 - Build images `docker-compose build`
 - Init data `docker-compose run --rm app sh -c  "./docker/entrypoints/wait.sh && bundle exec rake db:reset"`  
 - To run app `docker-compose up`.
