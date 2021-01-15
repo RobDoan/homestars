@@ -33,15 +33,15 @@ docker-compose version 1.27.4, build 40524192
 
 - Guard Command for watching files and running test:
     + `bundle exec guard`
-    + Docker: `docker-compose run --rm auth-api bundle exec guard`
+    + Docker: `docker-compose run --rm app bundle exec guard`
 
 - Run test:
     + `bundle exec rspec`
-    + Docker: `docker-compose run --rm auth-api bundle exec rspec`
+    + Docker: `docker-compose run --rm app bundle exec rspec`
 
 - Format code
     + `bundle exec rubocop`
-    + Docker: `docker-compose run --rm auth-api bundle exec rubocop`
+    + Docker: `docker-compose run --rm app bundle exec rubocop`
 
 ### Things should be improve when I have more time
 
