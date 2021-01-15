@@ -1,6 +1,6 @@
 # Home Stars Code challenger
 
-- To make it to be easier for release, so I didn't not ignore `master.key` file in git repository
+- To make it to be easier for releasing I didn't not ignore `master.key` file in git repository
 ### Setup
 
 1. Use Docker
@@ -45,18 +45,17 @@ docker-compose version 1.27.4, build 40524192
 
 ### Things should be improve when I have more time
 
-- If I have more time, I will add a web socket service to notify and update chat messages.
-- Implement Revoke strategy for JWT token using Redis. Ideas: when user logout, the key should be stored in `denylist`
+- If I were to have more time, I would add a web socket service to notify and update chat messages.
+- I would also implement Revoke strategy for JWT token using Redis. Ideas: when user logout, the key should be stored in `denylist`
   of redis
 - Generate Swagger document
-- Data Consistency. When we delete a user, we only soft delete that user. Otherwise, the system can not find created
-  user, and his messages. If we set `dependencies: destroy` for channels, it may cause problem: other users will lost
+- Data Consistency: When we delete a user, we only soft delete that user. Otherwise, the system can not find created
+  user and his messages. If we set `dependencies: destroy` for channels, it may cause problem: other users will lose
   chat history.
-- Move `PunditUser` to a class rather than user Struct inside Controller, it's hard and seems not correct to put there
-- Refactor `JoinedChannel` model. I did a mistake when naming it a little bit wrong, which causes problem in naming for
-  list of channels that user has joined
+- Refactor `JoinedChannel` model. I made a mistake by naming it wrong, which caused problems in naming for the
+  list of channels that user has joined.
 - Write `Dockerfile` better.
-- Add pagination for message list
+- Add pagination for message list.
 
 ### TODO
 
