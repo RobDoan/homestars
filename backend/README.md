@@ -1,5 +1,6 @@
 # Home Stars Code challenger
 
+- To make it to be easier for release, so I didn't not ignore `master.key` file in git repository
 ### Setup
 
 1. Use Docker
